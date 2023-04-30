@@ -1,2 +1,3 @@
-# minimal-websockets
-minimal websockets server using aspnetcore signalr
+# Minimal Websockets
+
+minimal websockets server using aspnetcore
