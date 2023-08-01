@@ -2,12 +2,12 @@
 {
     public interface ISchemaRepository
     {
-        Task<string> GetSchema(string schema);
+        Task<string?> GetSchema(string? schema);
     }
 
     public class SchemaRepository : ISchemaRepository
     {
-        public Task<string> GetSchema(string schema)
+        public Task<string?> GetSchema(string? schema)
         {
             var result = @"
             {
@@ -19,7 +19,7 @@
                 }
             }";
 
-            return Task.FromResult(schema);
+            return Task.FromResult(result);
         }
     }
 }

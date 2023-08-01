@@ -10,6 +10,7 @@
     <PackageReference Include="Ensure.That" Version="10.1.0" />
     <PackageReference Include="FluentValidation" Version="11.5.2" />
     <PackageReference Include="MediatR" Version="12.0.1" />
+    <PackageReference Include="NJsonSchema" Version="10.9.0" />
   </ItemGroup>
 
 </Project>

@@ -1,6 +1,7 @@
 ﻿using EnsureThat;
 using FluentValidation;
 using MediatR;
+using NJsonSchema;
 using WebSockets.Repositories;
 
 namespace WebSockets.Handlers
@@ -34,9 +35,22 @@ namespace WebSockets.Handlers
             Repository = EnsureArg.IsNotNull(repository);
         }
 
-        public Task<ValidateResponse> Handle(ValidateRequest request, CancellationToken cancel)
+        public async Task<ValidateResponse> Handle(ValidateRequest request, CancellationToken cancel)
         {
-            throw new NotImplementedException();
+            var result = new ValidateResponse();
+
+            try
+            {
+                var schema = await JsonSchema.FromJsonAsync(await Repository.GetSchema(request.Schema));
+
+                result.Valid = schema.Validate(request.Payload).Count.Equals(0);
+            }
+            catch (Exception error)
+            {
+                Console.WriteLine(error.Message);
+            }
+
+            return result;
         }
     }
 }

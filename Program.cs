@@ -11,6 +11,8 @@ public class Program
 
         builder.Services.AddSingleton<IServer, Server>();
 
+        builder.Services.AddHostedService<Beacon>();
+
         builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining(typeof(Program)));
 
         var app = builder.Build();
